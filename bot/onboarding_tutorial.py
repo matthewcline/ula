@@ -13,6 +13,44 @@ TASKS = [
     }
 ]
 
+Models:
+
+Task
+- text
+- description
+- emoji
+
+User
+- username
+- slack user id (used for channel)
+
+UserTask (many to many)
+- user
+- task
+- completed
+- date
+
+Message
+- text
+- timestamp
+- channel
+
+Challenge:
+- initial (Message)
+- check in intro (Message)
+- channel message indicating someone completed something (Message)
+- array of Tasks
+- frequency
+- duration
+
+UserChallenge:
+- Challenge
+- User
+- date started
+- completed
+
+
+
 
 class Message:
     def __init__(self, channel):
@@ -35,12 +73,14 @@ class Task:
         return self.emoji
 
 
-class TaskMessage:
-    """Constructs the task message and stores the state of which tasks were completed."""
+class TaskMessage(Message):
+    """Constructs the tasks message and stores the state of which tasks were completed."""
 
     def __init__(self, intro_text):
         self.intro_text = intro_text
         self.tasks = []
+
+    DIVIDER_BLOCK = {"type": "divider"}
 
     def get_message_payload(self):
         return {
@@ -49,13 +89,13 @@ class TaskMessage:
             "username": self.username,
             "icon_emoji": self.icon_emoji,
             "blocks": [
-                self.get_welcome_block(),
+                self._get_welcome_block(),
                 self.DIVIDER_BLOCK,
                 *self._get_task_blocks()
             ],
         }
 
-    def get_welcome_block(self):
+    def _get_welcome_block(self):
         return {
             "type": "section",
             "text": {
