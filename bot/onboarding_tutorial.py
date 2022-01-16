@@ -13,44 +13,6 @@ TASKS = [
     }
 ]
 
-Models:
-
-Task
-- text
-- description
-- emoji
-
-User
-- username
-- slack user id (used for channel)
-
-UserTask (many to many)
-- user
-- task
-- completed
-- date
-
-Message
-- text
-- timestamp
-- channel
-
-Challenge:
-- initial (Message)
-- check in intro (Message)
-- channel message indicating someone completed something (Message)
-- array of Tasks
-- frequency
-- duration
-
-UserChallenge:
-- Challenge
-- User
-- date started
-- completed
-
-
-
 
 class Message:
     def __init__(self, channel):
