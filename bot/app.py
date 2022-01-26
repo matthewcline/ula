@@ -1,7 +1,7 @@
 import logging
 from slack_bolt import App
 from slack_sdk.web import WebClient
-from onboarding_tutorial import OnboardingTutorial
+from onboarding_tutorial import TaskMessage
 
 app = App()
 
@@ -12,7 +12,7 @@ def start_onboarding(user_id: str, channel: str, client: WebClient):
 
     print("starting")
 
-    onboarding_tutorial = OnboardingTutorial(channel)
+    onboarding_tutorial = TaskMessage(channel, "Welcome back Matt!  Which of these did you crush today?")
 
     # Get the onboarding message payload
     message = onboarding_tutorial.get_message_payload()
@@ -66,7 +66,7 @@ def update_emoji(event, client):
     channel_id = event.get("item", {}).get("channel")
     user_id = event.get("user")
 
-    print(onboarding_tutorials_sent)
+    emoji = event.get("reaction")
 
     if channel_id not in onboarding_tutorials_sent:
         return
@@ -74,8 +74,9 @@ def update_emoji(event, client):
     # Get the original tutorial sent.
     onboarding_tutorial = onboarding_tutorials_sent[channel_id][user_id]
 
-    # Mark the reaction task as completed.
-    onboarding_tutorial.reaction_task_completed = True
+    for task in onboarding_tutorial.tasks:
+        if task.emoji == f':{emoji}:':
+            task.completed = True
 
     # Get the new message payload
     message = onboarding_tutorial.get_message_payload()

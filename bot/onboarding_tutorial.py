@@ -14,12 +14,12 @@ TASKS = [
 ]
 
 
-class Message:
-    def __init__(self, channel):
-        self.channel = channel
-        self.username = "pythonboardingbot"
-        self.icon_emoji = ":robot_face:"
-        self.timestamp = ""
+# class Message:
+#     def __init__(self, channel):
+#         self.channel = channel
+#         self.username = "pythonboardingbot"
+#         self.icon_emoji = ":robot_face:"
+#         self.timestamp = ""
 
 
 class Task:
@@ -35,12 +35,18 @@ class Task:
         return self.emoji
 
 
-class TaskMessage(Message):
+# TODO: inherit from Message
+class TaskMessage:
     """Constructs the tasks message and stores the state of which tasks were completed."""
 
-    def __init__(self, intro_text):
+    def __init__(self, channel, intro_text):
+        self.channel = channel
+        self.username = "pythonboardingbot"
+        self.icon_emoji = ":robot_face:"
+        self.timestamp = ""
+
         self.intro_text = intro_text
-        self.tasks = []
+        self.tasks = [Task(task.get('text'), task.get('emoji')) for task in TASKS]
 
     DIVIDER_BLOCK = {"type": "divider"}
 
