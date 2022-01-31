@@ -14,6 +14,7 @@ function Challenge() {
       }}
       noValidate
       autoComplete="off"
+      className={'challenge'}
     >
       <div>
         <TextField id="outlined-basic" label="Challenge Title" variant="outlined" />
