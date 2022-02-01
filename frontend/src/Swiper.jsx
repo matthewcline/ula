@@ -13,6 +13,8 @@ import 'swiper/modules/mousewheel/mousewheel.min.css';
 
 
 import Challenge from './Challenge.jsx';
+import TextInput from './TextInput.jsx';
+import Tasks from './Tasks.jsx';
 
 // import "./styles.css";
 
@@ -37,16 +39,14 @@ export default function App() {
         className="mySwiper"
       >
         <SwiperSlide>
-            <Challenge />
+            <TextInput label={"Challenge Title"}/>
         </SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        <SwiperSlide>
+            <TextInput label={"Challenge Description"}/>
+        </SwiperSlide>
+        <SwiperSlide>
+            <Tasks />
+        </SwiperSlide>
       </Swiper>
     </>
   );

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import Button from '@mui/material/Button';
@@ -17,7 +16,6 @@ import Swiper from './Swiper.jsx';
 function App() {
   return (
     <div className="App">
-        <h1> ula </h1>
         <Swiper />
     </div>
   );
