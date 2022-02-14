@@ -87,10 +87,3 @@ class TaskMessage:
         if task.completed:
             return task.emoji
         return ":white_large_square:"
-
-    # @staticmethod
-    # def _get_task_block(text, information):
-    #     return [
-    #         {"type": "section", "text": {"type": "mrkdwn", "text": text}},
-    #         {"type": "context", "elements": [{"type": "mrkdwn", "text": information}]},
-    #     ]

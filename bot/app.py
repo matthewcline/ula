@@ -84,32 +84,6 @@ def update_emoji(event, client):
     # Post the updated message in Slack
     updated_message = client.chat_update(**message)
 
-
-# =============== Pin Added Events ================ #
-# When a users pins a message the type of the event will be 'pin_added'.
-# Here we'll link the update_pin callback to the 'pin_added' event.
-@app.event("pin_added")
-def update_pin(event, client):
-    """Update the onboarding welcome message after receiving a "pin_added"
-    event from Slack. Update timestamp for welcome message as well.
-    """
-    # Get the ids of the Slack user and channel associated with the incoming event
-    channel_id = event.get("channel_id")
-    user_id = event.get("user")
-
-    # Get the original tutorial sent.
-    onboarding_tutorial = onboarding_tutorials_sent[channel_id][user_id]
-
-    # Mark the pin task as completed.
-    onboarding_tutorial.pin_task_completed = True
-
-    # Get the new message payload
-    message = onboarding_tutorial.get_message_payload()
-
-    # Post the updated message in Slack
-    updated_message = client.chat_update(**message)
-
-
 # ============== Message Events ============= #
 # When a user sends a DM, the event type will be 'message'.
 # Here we'll link the message callback to the 'message' event.
@@ -118,7 +92,6 @@ def message(event, client):
     """Display the onboarding welcome message after receiving a message
     that contains "start".
     """
-    print("message")
     channel_id = event.get("channel")
     user_id = event.get("user")
     text = event.get("text")
@@ -128,7 +101,6 @@ def message(event, client):
 
 
 if __name__ == "__main__":
-    print("hi")
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
     logger.addHandler(logging.StreamHandler())

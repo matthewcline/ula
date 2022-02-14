@@ -19,6 +19,10 @@ export default function SelectInput() {
     setEmoji(event.target.value);
   };
 
+  const handleOpen = () => {
+    console.log("opened!")
+  };
+
   return (
     <Box sx={{ minWidth: 100 }} style={{flex: 1}}>
       <FormControl fullWidth>
@@ -29,9 +33,10 @@ export default function SelectInput() {
           value={emoji}
           label="Emoji"
           onChange={handleChange}
+          onOpen={handleOpen}
         >
-          <MenuItem value={'yes'}>Yes</MenuItem>
-          <MenuItem value={'no'}>No</MenuItem>
+          <MenuItem value={'yes'}>yes</MenuItem>
+          <MenuItem value={'no'}>no</MenuItem>
         </Select>
       </FormControl>
     </Box>
