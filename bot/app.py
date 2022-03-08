@@ -100,6 +100,18 @@ def message(event, client):
         return start_onboarding(user_id, channel_id, client)
 
 
+# ============== Channel Events ============= #
+
+@app.event("channel_joined")
+def handle_channel_joined():
+    pass
+
+@app.event("channel_left")
+def handle_channel_left():
+    # opt the user out of the challenge
+    pass
+
+
 if __name__ == "__main__":
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
@@ -110,3 +122,4 @@ import ssl as ssl_lib
 import certifi
 
 ssl_context = ssl_lib.create_default_context(cafile=certifi.where())
+
