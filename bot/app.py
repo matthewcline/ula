@@ -1,4 +1,5 @@
 import logging
+import random
 from slack_bolt import App
 from slack_sdk.web import WebClient
 from onboarding_tutorial import TaskMessage
@@ -6,6 +7,28 @@ from onboarding_tutorial import TaskMessage
 app = App()
 
 onboarding_tutorials_sent = {}
+
+# An idea for a challenge is to go to the gym at least 3 times a week
+# provide updates 2 times a week (Wednesday and Friday) to avoid overloading
+
+greeting_messages = ["What's up", "Howdy", "Yello", "How's it going,"]
+
+check_in = "Hi Matt, did you accomplish your goal today?  Please respond with a {:strong:} if you did " \
+           "and leave a comment with how things are going!"
+
+"Your teammates would love to hear about any accomplishments or challenged you're facing"
+"Feel free to pose a question to your teammates"
+
+
+
+status_message = "Hi everyone, happy Wednesday!  Here's some comments from your teammates: "
+
+def generate_task_message():
+    # use this function to communicate the user's challenge to them
+
+def generate_check_in_message():
+    greeting = f"{random.choice(greeting_messages)} {name}!"
+    return f"{greeting}"
 
 def start_onboarding(user_id: str, channel: str, client: WebClient):
     # Create a new onboarding tutorial.

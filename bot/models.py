@@ -19,6 +19,8 @@ class UserTask(models.Model):
 class Message(models.Model):
     text = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
+    # - timestamp
+    # - channel
 
 class Challenge(models.Model):
     welcome_msg = models.ForeignKey('Message', on_delete=models.CASCADE)
@@ -38,8 +40,3 @@ class Challenge(models.Model):
 # - challenge
 # - time during the day to send message
 # - frequency of message (options are daily, every 2 days, weekly, every 2 weeks, monthly)
-
-# Log
-# - text
-# - timestamp
-# - channel
