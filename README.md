@@ -9,7 +9,8 @@ https://user-images.githubusercontent.com/8964784/151279085-2c9fa01e-3acc-40fa-b
 
 #### Running the app locally
 
+0. Open Rosetta Terminal
 1. `pyenv activate venv3`
-2. `./manage.py runserver`
-3. ngrok
-4. Assign ngrok url to Event Subscriptions at https://api.slack.com/
+2. `cd bot && python3 app.py`
+3. `ngrok http 3000`
+4. Assign https ngrok url + '/slack/events' to Event Subscriptions at https://api.slack.com/
